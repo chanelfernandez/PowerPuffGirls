@@ -4,9 +4,9 @@ import random
 # POWERPUFF GIRLS ADVENTURE
 # ==============================
 
-print("=" * 40)
-print("   POWERPUFF GIRLS ADVENTURE")
-print("=" * 40)
+print("=" * 50)
+print(" WELCOME TO POWERPUFF GIRLS: DEFEND TOWNSVILLE")
+print("=" * 50)
 
 # inadd ko lang 'to para formality ng laro haha
 print("""
@@ -20,7 +20,13 @@ GAME INSTRUCTIONS:
 Good luck saving Townsville!
 """)
 
+#Input ng Player
+name = input("Enter your name? ").capitalize()
+
+
+
 # Main Menu - another option lang din before magstart ang game.
+#def main_menu():
 while True:
 
     print("\n====== MAIN MENU ======")
@@ -28,28 +34,28 @@ while True:
     print("2. Shop")
     print("3. Exit")
 
-    main_menu = input("\nChoose option: ")
+    main_menu = input("\nChoose option: ").lower()
 
     # START GAME
-    if main_menu == "1":
-        print("\nStarting Game...")
+    if main_menu == "1" or main_menu == "start game":
+        print("\nStarting Game...\n")
         break
 
     # SHOP
-    elif main_menu == "2":
+    elif main_menu == "2" or main_menu == "shop":
 
         print("\n====== SHOP ======")
         print("1. Healing Potion - Restore HP")
-        print("2. Power Gloves - Increase ATK")
+        print("2. Special Skill - Increase ATK")
         print("3. Exit Shop")
 
         shop_choice = input("\nChoose item: ")
 
         if shop_choice == "1":
-            print("You bought a Potion!")
+            print("You bought a Heal Potion!")
 
         elif shop_choice == "2":
-            print("You bought Power Gloves!")
+            print("You bought Special Skill!")
 
         elif shop_choice == "3":
             print("Leaving Shop...")
@@ -58,45 +64,108 @@ while True:
             print("Invalid shop choice!")
 
     # EXIT
-    elif main_menu == "3":
+    elif main_menu == "3" or main_menu == "exit" :
 
         print("\nThanks for playing Powerpuff Girls Adventure!")
         exit()
-
+        break
     else:
         print("\nInvalid menu choice!")
 
-# List of Tuples (Name, HP, Attack, Special Attack)
 
-heroes = [
-    ("Blossom - Channel Fernandez", 50, 10, 25),
-    ("Bubbles - Kimberly David", 45, 7, 30),
-    ("Buttercup - Febbie Escoto", 55, 8, 35)
-]
-
-villains = [
-    ("Russell Nunag", 35, 5, 20),
-    ("Lovendin Montero", 40, 6, 25),
-    ("Kain Agustin", 32, 5, 30),
-    ("Arthur Javier", 38, 4, 35),
-]
-
-
-#Input ng Player
-name = input("What is your hero name? ").capitalize()
-
+# Dictionary (Name, HP, Attack, Special Attack)
 print("\n====== Choose your Hero ======\n")
+heroes = {
+    "Blossom": {
+        "atk": 20,
+        "hp": 100,
+        "def": 15,
+        "ss": 40
+    },
+
+    "Bubbles": {
+        "atk": 15,
+        "hp": 100,
+        "def": 10,
+        "ss": 40
+    },
+
+    "Buttercup": {
+        "atk": 25,
+        "hp": 100,
+        "def": 20,
+        "ss": 40
+    }
+}
+
+#Villain Dictionary
+villains = {
+    "Princess Morbucks" : {
+        "villain_atk" : 10,
+        "villain_def" : 5, 
+        "villain_hp" : 100
+    } ,
+    "HIM" : { 
+        "villain_atk" : 15,
+        "villain_def" : 10, 
+        "villain_hp" : 100
+    },
+    "Fuzzy Lumpkins" : {
+        "villain_atk" : 25,
+        "villain_def" : 15,
+        "villain_hp" : 100
+    },
+    "Mojo Jojo" : { 
+        "villain_atk" : 30,
+        "villain_def" : 20, 
+        "villain_hp" : 100
+    }
+}
+
 
 # Display hero choices
-for i, hero in enumerate(heroes, start=1):
-    print(f"{i}. {hero[0]}")
+Characters = ["Blossom", "Bubbles", "Buttercup"]
+for num,Characters in enumerate(Characters, 1):
+    print(num,Characters)
 
-choice = int(input("\nSelect Hero: "))
+while True:
 
-# tupples to parang nag ccall din ng functions
-hero_name, hero_hp, hero_atk, hero_splatk = heroes[choice - 1]
+    Characters_choice = input("Select Hero: ").lower()
+    if Characters_choice == "blossom" or Characters_choice == "1":
+        Cname = ("Blossom")
+        print("\nHere are the Stats of Blossom:") 
+        print("HP: 100")
+        print("Attack: 15")
+        print("Defense: 10")
 
-# player dictionary para mag store ng stas etc.
+    elif Characters_choice == "bubbles" or Characters_choice == "2":
+        Cname = ("Bubbles")
+        print("\nHere are the Stats of Bubbles:") 
+        print("HP: 100")
+        print("Attack: 12")
+        print("Defense: 8")
+
+    elif Characters_choice == "buttercup" or Characters_choice == "3":
+        Cname = ("Buttercup")
+        print("\nHere are the Stats of Buttercup:") 
+        print("HP: 100")
+        print("Attack: 20")
+        print("Defense: 17")
+
+    else: 
+        print("Error")
+        continue
+
+    confirm = input(f"\nDo you want you use this Character {Cname}? (yes/no): ")
+
+    if confirm == "yes":
+        print(f"\n{name} selected {Cname}!")
+        break
+    else:
+        print("choose again...")
+
+
+# player dictionary para mag store ng stats etc.
 player = {
     "hero": name,
     "heroes": hero_name,
@@ -160,8 +229,6 @@ while True:
             print(f"It dealt {damage} damage!")
 
         # HEAL the world
-       
-
         elif action == "2":
 
             heal = random.randint(3, 7)
@@ -170,7 +237,6 @@ while True:
             print(f"\n Holy Father healed {player['heroes']} for {heal} HP!")
 
         # SPECIAL SKILLS
-     
         elif action == "3":
 
             special_damage = random.randint(10, player["splatk"])
@@ -181,7 +247,6 @@ while True:
             print(f"It dealt {special_damage} damage!")
 
         # RUN AWAY
-       
         elif action == "4":
 
             print("\nYou flew away safely!")
