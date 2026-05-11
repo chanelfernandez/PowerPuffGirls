@@ -39,8 +39,9 @@ def stage1(player):
             if loot["heal_potion"] > 0:
                 loot["heal_potion"] -= 1
 
-                heal = random.randint(10, 25)
-                player["hp"] += heal
+                heal = random.randint(10, 50)
+                #player["hp"] += heal
+                player["hp"] = min(player["hp"] + heal, 100)
 
                 print(f"You used Heal Potion (+{heal} HP)")
             else:
@@ -67,7 +68,9 @@ def stage1(player):
 
         # pag namatay
         if player["hp"] <= 0:
+            print("\n" + "="*30)
             print("GAME OVER")
+            print("\n" + "="*30)
             exit()
 
     print("\nYou defeated the grumpy princess!")

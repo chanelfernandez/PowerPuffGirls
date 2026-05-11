@@ -11,7 +11,7 @@ def use_heal_potion(player):
     if loot["heal_potion"] > 0:
         loot["heal_potion"] -= 1
         player["hp"] += 20
-        print("Used Heal Potion (+20 HP)")
+        print("Used Heal Potion ")
     else:
         print("No Heal Potions!")
 

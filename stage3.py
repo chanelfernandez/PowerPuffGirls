@@ -7,7 +7,7 @@ def stage3(player):
     print("Defeat the boss to save Townsville.\n")
 
     enemy_name = "Mojo Jojo"
-    enemy_hp = 150
+    enemy_hp = 100
     enemy_atk = 20
 
 
@@ -29,6 +29,7 @@ def stage3(player):
 
         elif action == "2":
             player["hp"] += 10
+            player["hp"] = min(player["hp"] + heal, 100)
 
         elif action == "3":
             enemy_hp -= player["ss"]

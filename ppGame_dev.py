@@ -69,6 +69,9 @@ def main_menu():
                 print("Invalid shop choice!")
 
         elif main_menu == "3" or main_menu == "inventory":
+            print("\n================================")
+            print("             Inventory             ")
+            print("==================================")
             print(f"Heal Potion: {loot["heal_potion"]}")
             print(f"Special Skill Potion: {loot["ss_potion"]}")
             print(f"Happy Paper: {loot["coins"]}")
@@ -76,7 +79,7 @@ def main_menu():
         # EXIT
         elif main_menu == "4" or main_menu == "exit" :
 
-            print("\nThanks for playing Powerpuff Girls Adventure!")
+            print("\n ===========EXIT===========")
             return "exit"
 
         else:
@@ -91,48 +94,22 @@ heroes = {
     "Blossom": {
         "atk": 20,
         "hp": 100,
-        "def": 15,
         "ss": 40
     },
 
     "Bubbles": {
         "atk": 15,
         "hp": 100,
-        "def": 10,
         "ss": 40
     },
 
     "Buttercup": {
         "atk": 25,
         "hp": 100,
-        "def": 20,
         "ss": 40
     }
 }
 
-#Villain Dictionary
-villains = {
-    "Princess Morbucks" : {
-        "villain_atk" : 10,
-        "villain_def" : 5, 
-        "villain_hp" : 100
-    } ,
-    "HIM" : { 
-        "villain_atk" : 15,
-        "villain_def" : 10, 
-        "villain_hp" : 100
-    },
-    "Fuzzy Lumpkins" : {
-        "villain_atk" : 25,
-        "villain_def" : 15,
-        "villain_hp" : 100
-    },
-    "Mojo Jojo" : { 
-        "villain_atk" : 30,
-        "villain_def" : 20, 
-        "villain_hp" : 100
-    }
-}
 
 # Display hero choices
 for num, hero in enumerate(heroes, 1):
@@ -152,7 +129,7 @@ while True:
         print("\nHere are the Stats of Blossom:") 
         print("HP: 100")
         print("Attack: 20")
-        print("Defense: 15")
+        
 
     elif Characters_choice == "bubbles" or Characters_choice == "2":
         Cname = "Bubbles"
@@ -161,7 +138,6 @@ while True:
         print("\nHere are the Stats of Bubbles:") 
         print("HP: 100")
         print("Attack: 15")
-        print("Defense: 10")
 
     elif Characters_choice == "buttercup" or Characters_choice == "3":
         Cname = "Buttercup"
@@ -170,7 +146,6 @@ while True:
         print("\nHere are the Stats of Buttercup:") 
         print("HP: 100")
         print("Attack: 25")
-        print("Defense: 20")
 
     else: 
         print("Error")
@@ -188,7 +163,6 @@ player = {
     "hero": Cname,
     "hp": selected_hero["hp"],
     "atk": selected_hero["atk"],
-    "def": selected_hero["def"],
     "ss": selected_hero["ss"]
 }
 
@@ -196,7 +170,6 @@ print("\n===== PLAYER INFO =====")
 print(f"Hero: {player['hero']}")
 print(f"HP: {player['hp']}")
 print(f"ATK: {player['atk']}")
-print(f"DEF: {player['def']}")
 print(f"SS: {player['ss']}")
 
 #ask the player menu
@@ -216,6 +189,7 @@ elif result == "start":
 def continue_game(stage_name):
 
     if confirm_choice(f"Do you want to continue to {stage_name}?"):         
+    
         print(f"\nEntering {stage_name}...\n")
         return True
     else:
@@ -228,32 +202,21 @@ print("\nEntering Stage 1")
 stage1(player)
 stage_reward(1)
 
+
 #========STAGE 2=========
-if main_menu() == "start":
-        print("\nEntering Stage 2")
-        stage2(player)
-        loot.stage_reward(2)
+if continue_game("Stage 2"):
+    stage2(player)
+    stage_reward(2)
+   
 
-if not continue_game("Stage 2"):
-    print("Game stopped.")
-    #main_menu()
-    exit()
-
-stage2(player)
-stage_reward(2)
-
-#========STAGE 3=========
-if main_menu() == "start":
-        print("\nEntering Stage 3")
-        stage2(player)
-        loot.stage_reward(3)
-
-if not continue_game("Final Boss"):
-    print("Game stopped.")
-    #main_menu()
-    exit()
-
-print("\nEntering Stage 3 (FINAL BOSS)")
-stage3(player)
-stage_reward(3)
+    #========STAGE 3=========
+    if continue_game("Final Boss"):
+        stage3(player)
+        stage_reward(3)
+       
+        print("\nCongratulations! You completed the game!")
+    else:
+        print("Game stopped at Stage 3.")
+else:
+    print("Game stopped at Stage 2.")
 

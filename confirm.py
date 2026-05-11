@@ -8,4 +8,3 @@ def confirm_choice(message):
             return False
         else:
             print("Invalid input. Please type 'yes' or 'no'.")
-

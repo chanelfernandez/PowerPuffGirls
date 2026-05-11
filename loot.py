@@ -16,14 +16,14 @@ def add_coins(level):
 
 # eto chance ng potion sa size din
 def get_loot():
-    chance = random.randint(0, 100)
+    chance = random.randint(1, 100)
 
-    if chance <= 50:
+    if chance <= 10:
         loot["heal_potion"] += 1
         print("You found a heal potion!")
         return "heal_potion"
 
-    elif chance <= 70:
+    elif chance <= 10:
         loot["ss_potion"] += 1
         print("You found a Special Skill potion!")
         return "ss_potion" 
@@ -43,8 +43,8 @@ def heal_potion():
 
 def ss_potion():
     print("Special Skill potion cost 50 happy paper")
-    if loot["coins"] >= 100:
-        loot["coins"] -= 100
+    if loot["coins"] >= 50:
+        loot["coins"] -= 50
         loot["ss_potion"] += 1
         print("Bought Special Skill potion!")
         return True
