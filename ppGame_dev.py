@@ -220,3 +220,11 @@ if continue_game("Stage 2"):
 else:
     print("Game stopped at Stage 2.")
 
+#Group 5
+#Fernandez, Chanel
+#Febbie Ann Escoto
+#David, Kimberly
+#Nunag, Ruselle
+#Agustin, Kian
+#Montero, Lovendin
+#Javier, Arthur 
